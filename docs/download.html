@@ -25,10 +25,10 @@
 
 <div class="subSection">
 <h4 class="hbox">
-<a name="requirejs">require.js 2.1.6</a>
+<a name="requirejs">require.js 2.1.20</a>
 <span class="boxFlex"></span>
-<a class="download" href="http://requirejs.org/docs/release/2.1.6/minified/require.js">Minified</a>
-<a class="download" href="http://requirejs.org/docs/release/2.1.6/comments/require.js">With Comments</a>
+<a class="download" href="http://requirejs.org/docs/release/2.1.20/minified/require.js">Minified</a>
+<a class="download" href="http://requirejs.org/docs/release/2.1.20/comments/require.js">With Comments</a>
 </h4>
 
 <p>All you need to start using require.js in the browser.</p>
@@ -36,17 +36,18 @@
 
 <div class="subSection">
 <h4 class="hbox">
-<a name="rjs">r.js: Optimizer and Node/Rhino/xpcshell adapter</a>
+<a name="rjs">r.js: Optimizer and Node/Rhino/Nashorn/xpcshell adapter</a>
 <span class="boxFlex"></span>
-<a class="download" href="http://requirejs.org/docs/release/2.1.6/r.js">Download</a>
+<a class="download" href="http://requirejs.org/docs/release/2.1.20/r.js">Download</a>
 </h4>
 
-<p>The r.js file allows you to run the optimizer as well as run modules in Node, Rhino or xpcshell.</p>
+<p>The r.js file allows you to run the optimizer as well as run modules in Node, Rhino, Nashorn or xpcshell.</p>
 
 <p>If you are running in Node, and want to use npm to install this file via npm, see the <a href="node.html">Use with Node</a> page for more information.</p>
 
-<p>For information on its use, as well as how to get the JAR files to run it under Rhino, see the <a href="https://github.com/jrburke/r.js">r.js README</a>.</p>
+<p>For information on its use, as well as how to get the JAR files to run it under Rhino/Nashorn, see the <a href="https://github.com/jrburke/r.js">r.js README</a>.</p>
 
+</div>
 </div>
 
 <div class="section">
@@ -79,7 +80,7 @@ logic until the DOM is ready for querying/modification.</p>
 <span class="boxFlex"></span>
 <a class="download" href="https://github.com/jrburke/require-cs/raw/latest/cs.js">Download</a>
 </h4>
-<p>Load files written in CoffeeScript.  With this plugin, it is easy to code in CoffeeScript in the browser, it can participate in the optimizer optimizations, and it works in Node and Rhino via the <a href="#rjs">RequireJS adapter</a>. This is the best way to do cross-environment, modular CoffeeScript. <a href="https://github.com/jrburke/require-cs">The project home</a> has more information on how to install and use it.</p>
+<p>Load files written in CoffeeScript.  With this plugin, it is easy to code in CoffeeScript in the browser, it can participate in the optimizer optimizations, and it works in Node and Rhino/Nashorn via the <a href="#rjs">RequireJS adapter</a>. This is the best way to do cross-environment, modular CoffeeScript. <a href="https://github.com/jrburke/require-cs">The project home</a> has more information on how to install and use it.</p>
 </div>
 
 
@@ -96,6 +97,160 @@ logic until the DOM is ready for querying/modification.</p>
 
 <div class="section">
 <h2><a name="releasenotes">Release Notes</a><span class="sectionMark">&sect; 3</span></h2>
+
+<h3 id="2-1-20">2.1.20</h3>
+
+<p>The main fixes: a fix in require.js to allow out of <a href="https://github.com/jrburke/requirejs/issues/1389">order define calls in a built file</a>, and an optimizer fix to <a href="https://github.com/jrburke/r.js/issues/833">detect another UMD pattern</a> and to skip looking at its internal structure.</p>
+
+<p>Full list of changes:</p>
+
+<ul>
+    <li><a href="https://github.com/jrburke/requirejs/issues?q=milestone%3A2.1.20+is%3Aclosed">Fixed requirejs issue</a></li>
+    <li><a href="https://github.com/jrburke/r.js/issues?q=milestone%3A2.1.20+is%3Aclosed">Fixed r.js issues</a></li>
+</ul>
+
+<h3 id="2-1-19">2.1.19</h3>
+
+<p>A new <a href="https://github.com/jrburke/requirejs/pull/1364">onNodeCreated</a> hook in require.js that will allow extending requirejs to support <a href="https://w3c.github.io/webappsec/specs/subresourceintegrity/">Subresource Integrity (SRI)</a>. Updates for esprima and uglifyjs2 in the optimizer.</p>
+
+<p>Full list of changes:</p>
+
+<ul>
+    <li><a href="https://github.com/jrburke/requirejs/issues?q=milestone%3A2.1.19+is%3Aclosed">Fixed requirejs issue</a></li>
+    <li><a href="https://github.com/jrburke/r.js/issues?q=milestone%3A2.1.19+is%3Aclosed">Fixed r.js issues</a></li>
+</ul>
+
+<h3 id="2-1-18">2.1.18</h3>
+
+<p>The notable changes are in the r.js optimizer:</p>
+
+<ul>
+    <li>An update to Esprima 2.2.0 for dependency tracing. Helps properly parse modules that are using some ES2015 features, like template strings.</li>
+    <li>A fix for detecting when a script exports an publicly visible AMD API and should be hoisted in the built output. The new detection is a bit stricter than before, so if your script with the public AMD API is not hoisted, please open a <a href="https://github.com/jrburke/r.js/issues">r.js issue</a>.</li>
+</ul>
+
+<p>Full list of changes:</p>
+
+<ul>
+    <li><a href="https://github.com/jrburke/requirejs/issues?q=milestone%3A2.1.18+is%3Aclosed">Fixed requirejs issue</a></li>
+    <li><a href="https://github.com/jrburke/r.js/issues?q=milestone%3A2.1.18+is%3Aclosed">Fixed r.js issues</a></li>
+</ul>
+
+<h3 id="2-1-17">2.1.17</h3>
+
+<p>The notable changes are in the r.js optimizer: an update to Esprima 2.1.0 for dependency tracing, and a fix around "use strict" processing that should help some loader plugins or build scenarios that were using React.</p>
+
+<p>Full list of changes:</p>
+
+<ul>
+    <li><a href="https://github.com/jrburke/requirejs/issues?q=milestone%3A2.1.17+is%3Aclosed">Fixed requirejs issue</a></li>
+    <li><a href="https://github.com/jrburke/r.js/issues?q=milestone%3A2.1.17+is%3Aclosed">Fixed r.js issues</a></li>
+</ul>
+
+<h3 id="2-1-16">2.1.16</h3>
+
+<p>The notable changes are in the r.js optimizer:</p>
+
+<ul>
+    <li><a href="http://esprima.org/">Esprima 2.0</a> is used by the optimizer when parsing modules for dependencies. This allows some ES6 features to be used. Whatever is parsable by Esprima 2.0 is what is supported (when running in xpcshell, <a href="https://developer.mozilla.org/en-US/docs/Mozilla/Projects/SpiderMonkey/Parser_API">Reflect.parse</a> is still used).</li>
+    <li><a href="https://github.com/jrburke/r.js#nashorn">The r.js optimizer runs in Nashorn now</a>.</li>
+    <li>Expanded support of some UMD-wrapped files that start with <code>!function(a) {...`</code>. If you use the <a href="https://github.com/ForbesLindesay/umd">UMD node package</a> to generate your UMD wrappers, upgrade to umd@3.0.0 or later to get full compatibility with the r.js optimizer.</li>
+</ul>
+
+<p>Full list of changes:</p>
+
+<ul>
+    <li><a href="https://github.com/jrburke/requirejs/issues?q=milestone%3A2.1.16+is%3Aclosed">Fixed requirejs issue</a></li>
+    <li><a href="https://github.com/jrburke/r.js/issues?q=milestone%3A2.1.16+is%3Aclosed">Fixed r.js issues</a></li>
+</ul>
+
+<h3 id="2-1-15">2.1.15</h3>
+
+<p>Mainly fixes a regression from 2.1.14 in the r.js optimizer where <a href="https://github.com/jrburke/r.js/issues/704">some define() calls were not found</a>. The most common manifestations of the bug would be either an extra <code>define('jquery', function(){})</code> in the build output or namespaced builds not working. The fixes for 2.1.15 are just in the optimizer. Full list of changes:</p>
+
+<ul>
+    <li><a href="https://github.com/jrburke/r.js/issues?q=milestone%3A2.1.15+is%3Aclosed">Fixed r.js optimizer issues</a></li>
+</ul>
+
+<h3 id="2-1-14">2.1.14</h3>
+
+<p>A couple more regression fixes for 2.1.12. One to <a href="https://github.com/jrburke/requirejs/issues/1131">fix nested plugin ID normalization</a>, like "pluginA!pluginbB!resource", and one for the <a href="https://github.com/jrburke/requirejs/issues/1133">optimizer incorrectly detecting UMD wrapped code</a>.</p>
+
+<h3 id="2-1-13">2.1.13</h3>
+
+<p>Version 2.1.12 regressed around ID normalization. <a href="https://github.com/jrburke/requirejs/issues/1129">2.1.13 fixes that regression</a>, and it is recommended that you do not use 2.1.12, but use 2.1.13 instead.</p>
+
+<h3 id="2-1-12">2.1.12</h3>
+
+<p>Just a bug fix/maintenance release. Full list of changes:</p>
+
+<ul>
+    <li><a href="https://github.com/jrburke/requirejs/issues?milestone=34&page=1&state=closed">Fixed require.js issues</a></li>
+    <li><a href="https://github.com/jrburke/r.js/issues?milestone=31&page=1&state=closed">Fixed r.js optimizer issues</a></li>
+</ul>
+
+<h3 id="2-1-11">2.1.11</h3>
+
+<p>Some bug fixes, with the most notable addition is an optimizer option, <code>wrapShim</code>. This will wrap shimmed dependencies in a define() call so that they work better after a build when their upstream dependencies are also AMD modules with dependencies.</p>
+
+<p>The most notable case is probably when using an AMD-aware version of Backbone, but using shim config for scripts that depend on Backbone. If this is your use case, then setting <code>wrapShim: true</code> in the optimizer config will likely fix any post-build problem you might see. More details in <a href="https://github.com/jrburke/r.js/issues/623">the bug ticket</a>.
+
+<p>Full list of changes:</p>
+
+<ul>
+    <li><a href="https://github.com/jrburke/requirejs/issues?milestone=33&page=1&state=closed">Fixed require.js issues</a></li>
+    <li><a href="https://github.com/jrburke/r.js/issues?milestone=30&page=1&state=closed">Fixed r.js optimizer issues</a></li>
+</ul>
+
+<h3 id="2-1-10">2.1.10</h3>
+
+<p>Mainly a maintenance release, and improves some cases when reusing code that was installed via npm. There are two new config options for the loader too:</p>
+
+<ul>
+    <li><a href="api.html#config-nodeIdCompat">nodeIdCompat</a>: some node modules installed by npm use module IDs like <code>example.js</code> and <code>example</code> interchangeably. Setting this config option to true will accommodate that style. <a href="https://github.com/jrburke/almond">almond</a> 0.2.9+ also supports this option.</li>
+    <li><a href="api.html#config-bundles">bundles</a>: a more compact way to list a set of module IDs belonging to a bundle ID, and supports loader plugin resource IDs.</li>
+</ul>
+
+<p>And for the optimizer, the <a href="optimization.html#mainConfigFile">mainConfigFile</a> option can now take an array of file paths that have configs in them. Later values take precedent over earlier values.</p>
+
+<p>Full list of changes:</p>
+
+<ul>
+    <li><a href="https://github.com/jrburke/requirejs/issues?milestone=32&page=1&state=closed">Fixed require.js issues</a></li>
+    <li><a href="https://github.com/jrburke/r.js/issues?milestone=29&page=1&state=closed">Fixed r.js optimizer issues</a></li>
+</ul>
+
+<h3 id="2-1-9">2.1.9</h3>
+
+<p>Full list of changes:</p>
+
+<p>Mainly a maintenance release to fix bugs. There is a new <a href="api.html#config-skipDataMain">skipDataMain</a> option in require.js to avoid the data-main work, which can be useful for browser extensions that should let the main content page's requirejs handle the data-main.</p>
+
+<ul>
+    <li><a href="https://github.com/jrburke/requirejs/issues?milestone=31&page=1&state=closed">Fixed require.js issues</a></li>
+    <li><a href="https://github.com/jrburke/r.js/issues?milestone=28&page=1&state=closed">Fixed r.js optimizer issues</a></li>
+</ul>
+
+
+<h3 id="2-1-8">2.1.8</h3>
+
+<p>A small release to fix an optimizer issue with <a href="https://github.com/jrburke/r.js/issues/476">parsing config calls for modifications</a>.</p>
+
+<h3 id="2-1-7">2.1.7</h3>
+
+<p>The main changes for this release:</p>
+
+<ul>
+    <li>For xpcshell, the optimizer uses the built in Reflect parser API instead of Esprima. xpcshell, on Linux and Windows in particular, has a constrained stack, and normal Esprima use was not possible. To accommodate this change, some of the parsing approaches used internally by r.js moved away from token scanning to tree walking. The only visible output change you may see is different use of space characters in transformed code.</li>
+    <li>The source map support was updated to use the new //# syntax as specified by the spec. This change is still making its way through the browsers, so if you need source map or sourceURL support with 2.1.7, you may need to use Firefox Aurora or Chrome Canary channels. The browser support levels should get better in around six weeks time.</li>
+</ul>
+
+<p>Full list of changes:</p>
+
+<ul>
+    <li><a href="https://github.com/jrburke/requirejs/issues?direction=desc&milestone=28&page=1&sort=created&state=closed">Fixed require.js issues</a></li>
+    <li><a href="https://github.com/jrburke/r.js/issues?milestone=26&page=1&state=closed">Fixed r.js optimizer issues</a></li>
+</ul>
 
 <h3 id="2-1-6">2.1.6</h3>
 

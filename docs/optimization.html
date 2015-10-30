@@ -23,11 +23,11 @@
 <p>RequireJS has an optimization tool that does the following</p>
 
 <ul class="serif">
-<li>Combines related scripts together into build layers and minifies them via <a href="https://github.com/mishoo/UglifyJS">UglifyJS</a>  (the default) or <a href="http://code.google.com/closure/compiler/">Closure Compiler</a> (an option when using Java).</li>
+<li>Combines related scripts together into build layers and minifies them via <a href="https://github.com/mishoo/UglifyJS">UglifyJS</a>  (the default) or <a href="https://developers.google.com/closure/compiler/">Closure Compiler</a> (an option when using Java).</li>
 <li>Optimizes CSS by inlining CSS files referenced by @import and removing comments.</li>
 </ul>
 
-<p>The optimizer is part of the <a href="https://github.com/jrburke/r.js">r.js adapter for Node and Rhino</a>, and it is designed to be run as part of a build or packaging step after you are done with development and are ready to deploy the code for your users.</p>
+<p>The optimizer is part of the <a href="https://github.com/jrburke/r.js">r.js adapter for Node and Nashorn</a>, and it is designed to be run as part of a build or packaging step after you are done with development and are ready to deploy the code for your users.</p>
 
 <p>The optimizer will only combine modules that are specified in arrays of string literals that are passed to top-level require and define calls, or the require('name') string literal calls in a <a href="whyamd.html#sugar">simplified CommonJS wrapping</a>. So, it will not find modules that are loaded via a variable name:</p>
 
@@ -52,7 +52,7 @@ require(mods);</code></pre>
 <span class="sectionMark">&sect; 1</span>
 </h2>
 
-<p>The optimizer can be run using Node, Java with Rhino, or in the browser. The requirements for each option:<p>
+<p>The optimizer can be run using Node, Java with Rhino or Nashorn, or in the browser. The requirements for each option:<p>
 
 <ul>
    <li><strong>Node:</strong> (preferred) <a href="http://nodejs.org">Node</a> 0.4.0 or later.</li>
@@ -71,18 +71,25 @@ require(mods);</code></pre>
 
 <p>1) You can download the tool on <a href="download.html#rjs">the download page</a>.</p>
 
-<p>2) If you are using Node with NPM, you can install r.js as part of the "requirejs" package in NPM:</p>
+<p>2) If you are using Node with NPM, you can install r.js globally as part of the "requirejs" package in NPM:</p>
 
-<pre><code>&gt; npm install requirejs
+<pre><code>&gt; npm install -g requirejs
 &gt; r.js -o app.build.js
 </code></pre>
 
-<p>That will work for a project based in the directory in which "npm install" is run. You can also install it globally via the -g option to npm:</p>
+<p>If on Windows, you may need to type <code>r.js.cmd</code> instead of <code>r.js</code>. Or, you can
+    use <a href="http://www.microsoft.com/resources/documentation/windows/xp/all/proddocs/en-us/doskey.mspx?mfr=true">DOSKEY</a>:</p>
 
-<pre><code>&gt; npm install -g requirejs
+<pre><code>DOSKEY r.js=r.js.cmd $*</code></pre>
+
+<p>If you want to install requirejs locally in a project as an npm package, instead of globally:</p>
+
+<pre><code>&gt; npm install requirejs
 </code></pre>
 
-<p>If you install the requirejs npm package, you can also <a href="node.html#optimizer">use the optimizer via a function call</a> inside a node program.</p>
+<p>With this local install, you can run the optimizer by running the <code>r.js</code> or <code>r.js.cmd</code> file found in the project's <code>node_modules/.bin</code> directory.
+
+<p>With the local install, you can also <a href="node.html#optimizer">use the optimizer via a function call</a> inside a node program.</p>
 
 <p>The rest of this page assumes that r.js is just downloaded manually from the download page. It is normally the clearest, most portable way to use the optimizer.</p>
 
@@ -302,7 +309,7 @@ require(mods);</code></pre>
 
 <p>However, it is more likely that you do not want to include that resource in the build. If the script does not have any dependencies, or you do not want to include its dependencies or will be including them in another way, then you can use the special <strong>'empty:' scheme</strong> in the paths config to just skip the file when doing an optimization.</p>
 
-<p>In your main.js file, create a paths config that gives the script a module name. This can be done even if the script does not define a module via a call to define(). paths config are just used to map short module/script IDs to an URL. This allows you to use a a different paths config for the optimization. In main.js:</p>
+<p>In your main.js file, create a paths config that gives the script a module name. This can be done even if the script does not define a module via a call to define(). paths config are just used to map short module/script IDs to an URL. This allows you to use a different paths config for the optimization. In main.js:</p>
 
 <pre><code>requirejs.config({
     paths: {
